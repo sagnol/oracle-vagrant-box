@@ -1,7 +1,8 @@
 #!/bin/sh
 
 # Set archive log mode and enable GG replication
-ORACLE_SID=ORCLCDB
+# SID for 11g
+ORACLE_SID=xe
 export ORACLE_SID
 sqlplus /nolog <<- EOF
 	CONNECT sys/top_secret AS SYSDBA
