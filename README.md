@@ -1,4 +1,4 @@
-# Debezium Vagrant Box for Oracle DB
+# Debezium Vagrant Box for Oracle DB (11g)
 
 This is a Vagrant configuration for setting up a virtual machine based on Fedora 27, containing
 an Oracle DB instance for testing.
@@ -57,8 +57,8 @@ Build the Docker image with the database:
 
 ```
 cd docker-images/OracleDatabase/SingleInstance/dockerfiles
-cp /vagrant_data/linuxx64_12201_database.zip 12.2.0.1
-./buildDockerImage.sh -v 12.2.0.1 -i -e
+cp /vagrant_data/oracle-xe-11.2.0-1.0.x86_64.rpm.zip 11.2.0.2
+./buildDockerImage.sh -v 11.2.0.2 -i -x
 ```
 
 Create a data directory and run the container:
@@ -74,7 +74,7 @@ sudo chown 54321 /home/vagrant/oradata/recovery_area
 Run the container
 
 ```
-docker run --name dbz_oracle -p 1521:1521 -e ORACLE_PWD=top_secret -v /home/vagrant/oradata/:/opt/oracle/oradata oracle/database:12.2.0.1-ee
+docker run --name dbz_oracle -p 1521:1521 -e ORACLE_PWD=top_secret --shm-size="1g" -v /home/vagrant/oradata/:/opt/oracle/oradata oracle/database:11.2.0.2-xe
 ```
 and wait for the database to start.
 
